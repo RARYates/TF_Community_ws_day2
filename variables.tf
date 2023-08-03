@@ -1,11 +1,18 @@
 # variables.tf
-variable prefix {}
+variable prefix {
+    type = string
+    default = "contoso"
+}
 
 variable region {           
     type = string
-    default = "UK South"
+    default = "westus2"
 }
 
 variable tags {
     type= map          
+}
+
+variable rg_names {
+  type = list(string)
 }

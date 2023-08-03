@@ -22,14 +22,9 @@ provider "azurerm" {
 }
 
 # Create the very first resource
-resource "azurerm_resource_group" "contoso_rg" {
-    name     = "${local.prefix}_rg_rary"
-    location = local.region
-    tags     = local.tags
-}
-
-resource "azurerm_resource_group" "contoso_dev_rg" {
-    name     = "${local.prefix}_rg_dev_rary"
-    location = local.region
-    tags     = local.tags
+resource "azurerm_resource_group" "rgs" {
+    count    = length(var.rg_names)
+    name     = "${var.prefix}_${var.rg_names[count.index]}"
+    location = var.region
+    tags     = var.tags
 }
